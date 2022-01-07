@@ -23,5 +23,5 @@ Visualización del listado de libros en ejecución por método GET
 Los datos de la API se consumen de SQL Server a través de procedimientos almacenados, se utilizó Entity Framework para
 hacer el mapeo de los datos.
 
-Eso sería todo por ahora.
+En el repositorio hay un archivo de bloc de notas donde están los script de la BD
 
