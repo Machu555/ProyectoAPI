@@ -1,0 +1,325 @@
+USE [master]
+GO
+/****** Object:  Database [BDNexosPrueba]    Script Date: 6/01/2022 10:51:06 p. m. ******/
+CREATE DATABASE [BDNexosPrueba]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'BDNexosPrueba', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\BDNexosPrueba.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'BDNexosPrueba_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\BDNexosPrueba_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [BDNexosPrueba] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [BDNexosPrueba].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [BDNexosPrueba] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [BDNexosPrueba] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [BDNexosPrueba] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [BDNexosPrueba] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [BDNexosPrueba] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [BDNexosPrueba] SET  MULTI_USER 
+GO
+ALTER DATABASE [BDNexosPrueba] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [BDNexosPrueba] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [BDNexosPrueba] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [BDNexosPrueba] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [BDNexosPrueba] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [BDNexosPrueba] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [BDNexosPrueba] SET QUERY_STORE = OFF
+GO
+USE [BDNexosPrueba]
+GO
+/****** Object:  Table [dbo].[Autor]    Script Date: 6/01/2022 10:51:06 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Autor](
+	[Autor_NombreCompleto] [varchar](max) NOT NULL,
+	[Autor_FechaNacimiento] [smalldatetime] NOT NULL,
+	[Autor_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Autor_Ciudad] [varchar](max) NOT NULL,
+	[Autor_CorreoElectronico] [varchar](max) NOT NULL,
+ CONSTRAINT [PK_Autor] PRIMARY KEY CLUSTERED 
+(
+	[Autor_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Libros]    Script Date: 6/01/2022 10:51:06 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Libros](
+	[Libro_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Libro_Titulo] [varchar](max) NOT NULL,
+	[Libro_Anio] [smallint] NOT NULL,
+	[Libro_Genero] [varchar](max) NOT NULL,
+	[Libro_CantidadPaginas] [smallint] NOT NULL,
+	[Libro_AutorId] [int] NOT NULL,
+ CONSTRAINT [PK_Libros] PRIMARY KEY CLUSTERED 
+(
+	[Libro_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  StoredProcedure [dbo].[spAutor_ConsultarAutores]    Script Date: 6/01/2022 10:51:06 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[spAutor_ConsultarAutores] 
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	select Autor_NombreCompleto [AutorNombre], Autor_FechaNacimiento [FechaNacimiento], Autor_Id [Id], Autor_Ciudad [Ciudad],
+		   Autor_CorreoElectronico [CorreoElectronico]
+		from Autor 
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spAutor_Registrar]    Script Date: 6/01/2022 10:51:06 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[spAutor_Registrar] @NombreCompleto varchar(MAX),
+								   @FechaNacimiento smalldatetime,
+								   @Ciudad varchar(MAX),
+								   @CorreoElectronico varchar(MAX),
+								   @Resultado int output
+
+
+AS
+	
+	Declare @Aux int = 0
+	
+	Begin Transaction InsertarAutor
+		Begin Try
+			Begin
+
+			 
+				select @Aux = COUNT(*) 
+					from  [dbo].[Autor]
+					where  Autor_NombreCompleto = @NombreCompleto
+
+				if(@Aux > 0)
+					Begin
+						set @Resultado =  2
+					End
+				else
+					Begin
+						insert into [dbo].[Autor] ([Autor_NombreCompleto], [Autor_FechaNacimiento], [Autor_Ciudad], [Autor_CorreoElectronico])
+							values (@NombreCompleto, @FechaNacimiento, @Ciudad, @CorreoElectronico)
+
+						set @Resultado = 1
+							
+					End
+			
+				commit Transaction InsertarAutor
+					
+			End
+		End Try
+		Begin Catch
+			rollback Transaction InsertarAutor		
+			set @Resultado=0
+		End Catch
+
+		
+GO
+/****** Object:  StoredProcedure [dbo].[spBusquedaPalabraClave]    Script Date: 6/01/2022 10:51:06 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[spBusquedaPalabraClave] @Caso int,
+										@NombreAutor varchar(MAX),
+										@Titulo varchar(MAX),
+										@Anio smallint
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	if(@Caso = 1) --Busqueda por Autor
+		Begin
+				select Libro_Id [Id], Libro_Titulo [Titulo], Libro_Anio [Anio], Libro_Genero [Genero], Libro_CantidadPaginas [Paginas],
+					B.Autor_NombreCompleto [NombreCompleto]
+					from Libros A 
+					inner join Autor B
+					on A.Libro_AutorId = B.Autor_Id
+					where B.Autor_NombreCompleto like '%'+ @NombreAutor +'%'
+		End
+
+	if(@Caso = 2) --Busqueda por Titulo
+		Begin
+				select Libro_Id [Id], Libro_Titulo [Titulo], Libro_Anio [Anio], Libro_Genero [Genero], Libro_CantidadPaginas [Paginas],
+					B.Autor_NombreCompleto [NombreCompleto]
+					from Libros A 
+					inner join Autor B
+					on A.Libro_AutorId = B.Autor_Id
+					where A.Libro_Titulo like '%'+ @Titulo +'%'
+			
+		End
+
+	if(@Caso = 3)-- Busqueda por Anio
+		Begin
+				select Libro_Id [Id], Libro_Titulo [Titulo], Libro_Anio [Anio], Libro_Genero [Genero], Libro_CantidadPaginas [Paginas],
+					B.Autor_NombreCompleto [NombreCompleto]
+					from Libros A 
+					inner join Autor B
+					on A.Libro_AutorId = B.Autor_Id
+					where A.Libro_Anio = @Anio
+		End
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spLibro_ConsultarLibros]    Script Date: 6/01/2022 10:51:06 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[spLibro_ConsultarLibros]
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	select Libro_Id [Id], Libro_Titulo [Titulo], Libro_Anio [Anio], Libro_Genero [Genero], Libro_CantidadPaginas [Paginas],
+		B.Autor_NombreCompleto [NombreCompleto]
+		from Libros A 
+		inner join Autor B
+		on A.Libro_AutorId = B.Autor_Id
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spLibro_Insertar]    Script Date: 6/01/2022 10:51:06 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[spLibro_Insertar] @Titulo varchar(MAX),
+								  @Anio smallint,
+								  @Genero varchar(MAX),
+								  @CantidadPaginas smallint,
+								  @AutorId int,
+								  @Resultado smallint output
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	
+	Declare @Aux int = 0
+	Declare @LibrosMaximos int = 3
+	
+
+	Begin Transaction InsertarLibro
+		Begin Try
+			Begin
+
+			    select @Aux = COUNT(*)
+					from Autor 
+					where Autor_Id = @AutorId 
+
+				if(@Aux > 0)
+					Begin
+						select @Aux = COUNT(*)
+							from Libros
+							where Libro_AutorId = @AutorId
+
+						if(@Aux < @LibrosMaximos)
+							Begin
+								insert into Libros([Libro_Titulo], [Libro_Anio], [Libro_Genero], [Libro_CantidadPaginas], [Libro_AutorId])
+									values (@Titulo, @Anio, @Genero, @CantidadPaginas, @AutorId)
+									
+								set @Resultado = 1
+								
+							End
+						else
+							Begin
+								set @Resultado = 3
+							End
+							
+					End
+				else
+					Begin
+						set @Resultado = 2
+					End
+				
+			
+				commit Transaction InsertarLibro
+					
+			End
+		End Try
+		Begin Catch
+			rollback Transaction InsertarLibro		
+			set @Resultado=0
+		End Catch
+
+	
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [BDNexosPrueba] SET  READ_WRITE 
+GO
