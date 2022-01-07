@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wi4DSn3P/Qg7UO+cu1UHDIGarJAWIo9lKNiP2YUQ3RPocISLdjWdYVZSYeOx/zxN6+F7+81+rchX01P2CRb7ag==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Esteban Alba\\source\\repos\\ProyectoAPI\\EntidadesDTO\\EntidadesDTO.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Esteban Alba\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.13\\microsoft.entityframeworkcore.abstractions.5.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}

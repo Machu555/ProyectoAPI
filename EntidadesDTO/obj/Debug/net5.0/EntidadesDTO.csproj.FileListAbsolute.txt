@@ -1,0 +1,12 @@
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\bin\Debug\net5.0\EntidadesDTO.deps.json
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\bin\Debug\net5.0\EntidadesDTO.dll
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\bin\Debug\net5.0\ref\EntidadesDTO.dll
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\bin\Debug\net5.0\EntidadesDTO.pdb
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\obj\Debug\net5.0\EntidadesDTO.GeneratedMSBuildEditorConfig.editorconfig
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\obj\Debug\net5.0\EntidadesDTO.AssemblyInfoInputs.cache
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\obj\Debug\net5.0\EntidadesDTO.AssemblyInfo.cs
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\obj\Debug\net5.0\EntidadesDTO.csproj.CoreCompileInputs.cache
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\obj\Debug\net5.0\EntidadesDTO.dll
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\obj\Debug\net5.0\ref\EntidadesDTO.dll
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\obj\Debug\net5.0\EntidadesDTO.pdb
+D:\Nexos Prueba\NexosPrueba\EntidadesDTO\obj\Debug\net5.0\EntidadesDTO.csproj.AssemblyReference.cache
